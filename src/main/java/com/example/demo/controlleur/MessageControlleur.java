@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/message")
 @AllArgsConstructor
 public class MessageControlleur {
@@ -17,12 +18,12 @@ public class MessageControlleur {
         messageService.envoyer(message);
     }
 
-    @PostMapping("/envoyer/{id}")
+    @GetMapping("/envoyer/{id}")
     public List<Message> read_sent(@PathVariable Long id) {
         return messageService.GetMessageEnvoyer(id);
     }
 
-    @PostMapping("/recu/{id}")
+    @GetMapping("/recu/{id}")
     public List<Message> read_receive(@PathVariable Long id) {
         return messageService.GetMessageRecu(id);
     }
