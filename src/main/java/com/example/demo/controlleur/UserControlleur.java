@@ -10,13 +10,14 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/user")
+@CrossOrigin
 public class UserControlleur {
     private final UserService userService;
     @PostMapping("/registre")
     public User create(@RequestBody User user) throws Exception {
         return userService.inscrire(user);
     }
-    @PostMapping("/login")
+    @GetMapping("/login")
     public User log(@RequestBody User user){
         return userService.connecter(user);
     }
@@ -24,7 +25,7 @@ public class UserControlleur {
     public  User update(@RequestParam Long id, @RequestBody User user){
         return  userService.modifier(id,user);
     }
-    @PostMapping("/getAllUser")
+    @GetMapping("/getAllUser")
     public List<User> readAll(){
         return userService.lire();
     }
